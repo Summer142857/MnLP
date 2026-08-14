@@ -279,8 +279,8 @@ class VRPEnv:
         # 2.1
         sub_solution_node = sub_solution[:, :, 0]
 
-        new_sulution_ascending, rank = torch.sort(sub_solution_node, dim=-1, descending=False)  # 升序
-        _, new_sulution_rank = torch.sort(rank, dim=-1, descending=False)  # 升序
+        new_sulution_ascending, rank = torch.sort(sub_solution_node, dim=-1, descending=False)  # ascending order
+        _, new_sulution_rank = torch.sort(rank, dim=-1, descending=False)  # ascending order
         sub_solution[:, :, 0] = new_sulution_rank+1
 
         # 2.2
@@ -681,7 +681,7 @@ class VRPEnv:
 
     def sampling_subpaths_repair(self, problems, solution, length_fix=False, mode='test', repair=True):
         # problems shape (B,V+1,4)
-        # solution shape (B,V,2) index从1开始
+        # solution shape (B,V,2); indices start from 1
 
         problems_size = problems.shape[1] - 1
         # print('problems_size',problems_size)
@@ -772,8 +772,8 @@ class VRPEnv:
         # -----------------------------
         # 2.1
         sub_solution_node = sub_solution[:, :, 0]
-        new_sulution_ascending, rank = torch.sort(sub_solution_node, dim=-1, descending=False)  # 升序
-        _, new_sulution_rank = torch.sort(rank, dim=-1, descending=False)  # 升序
+        new_sulution_ascending, rank = torch.sort(sub_solution_node, dim=-1, descending=False)  # ascending order
+        _, new_sulution_rank = torch.sort(rank, dim=-1, descending=False)  # ascending order
         sub_solution[:, :, 0] = new_sulution_rank + 1
         # 2.2
         index_2, _ = torch.cat((new_sulution_ascending, new_sulution_ascending, new_sulution_ascending, new_sulution_ascending), dim=1). \

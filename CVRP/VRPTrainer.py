@@ -183,9 +183,9 @@ class VRPTrainer:
 
     def _train_one_batch(self, episode, batch_size, epoch):
 
-        self.model.train() # train状态
+        self.model.train() # training mode
 
-        self.env.load_problems(episode,batch_size) # 重新生成 problems
+        self.env.load_problems(episode,batch_size) # regenerate problems
 
         reset_state, _, _ = self.env.reset(self.env_params['mode'])
 
@@ -258,7 +258,7 @@ class VRPTrainer:
                 self.optimizer.step()
 
             current_step+=1
-            state, reward, reward_student, done = self.env.step(selected_teacher, selected_student,selected_flag_teacher,selected_flag_student)  # 更新 selected_teacher list 和 mask
+            state, reward, reward_student, done = self.env.step(selected_teacher, selected_student,selected_flag_teacher,selected_flag_student)  # update selected_teacher list and mask
 
             loss_list.append(loss_mean)
 
