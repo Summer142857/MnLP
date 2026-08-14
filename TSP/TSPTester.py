@@ -228,7 +228,7 @@ class TSPTester():
                             state,self.env.selected_node_list,self.env.solution,current_step, repair = True)
 
                     current_step += 1
-                    state, reward, reward_student, done = self.env.step(selected_teacher, selected_student)  # 更新 selected_teacher list 和 mask
+                    state, reward, reward_student, done = self.env.step(selected_teacher, selected_student)  # update selected_teacher list and mask
 
                 ahter_repair_sub_solution = torch.roll(self.env.selected_node_list,shifts=-1,dims=1)
 
